@@ -7,7 +7,7 @@ import Link from "next/link";
 const ProductCard = () => {
   return (
     <Link href="/products/id">
-      <div className="rounded-lg w-full bg-base-100 shadow-xl border-2 overflow-hidden">
+      <div className="rounded-lg w-full bg-base-100 shadow-xl overflow-hidden">
         <Image
           src={defaultImage}
           alt="Product image"

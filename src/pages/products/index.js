@@ -1,11 +1,23 @@
+import ProductCard from "@/components/atoms/ProductCard";
 import RootLayout from "@/layout/RootLayout";
 import { useRouter } from "next/router";
 import React from "react";
 
 const ProductsPage = () => {
   const router = useRouter();
-  console.log(router.query.search);
-  return <>ProductsPage</>;
+
+  return (
+    <>
+      <h1 className="mb-5 text-5xl font-bold">
+        {router.query.category ? `${router.query.category}` : "Products"}
+      </h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
+        {[1, 2, 3, 4, 5, 6].map((product) => (
+          <ProductCard key={product} />
+        ))}
+      </div>
+    </>
+  );
 };
 
 ProductsPage.getLayout = function getLayout(page) {
