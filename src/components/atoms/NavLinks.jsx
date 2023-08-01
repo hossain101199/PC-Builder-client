@@ -11,17 +11,16 @@ const NavLinks = () => {
         <details>
           <summary>Categories </summary>
           <ul className="p-2 z-[1]">
-            <li>
-              <a>Submenu 1</a>
-            </li>
-            <li>
-              <a>Submenu 2</a>
-            </li>
+            {[1, 2, 3, 4, 5, 6].map((category) => (
+              <li key={category}>
+                <Link href={`/products?category=${category}`}>{category}</Link>
+              </li>
+            ))}
           </ul>
         </details>
       </li>
       <li>
-        <Link href="pc-builder">
+        <Link href="/pc-builder">
           <button className="btn"> PC Builder</button>
         </Link>
       </li>
