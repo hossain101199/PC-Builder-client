@@ -8,25 +8,37 @@ import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
 import React from "react";
 
-const HomePage = () => {
+const HomePage = ({ products, categories }) => {
   return (
     <>
-      <Spinner />
       <h1 className="mb-5 text-5xl font-bold">Featured Products</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
-        {[1, 2, 3, 4, 5, 6].map((product) => (
-          <ProductCard key={product} />
+        {products.data.map((product) => (
+          <ProductCard key={product.id} data={product} />
         ))}
       </div>
 
       <h1 className="mb-5 text-5xl font-bold">Categories</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
-        {[1, 2, 3, 4, 5, 6].map((product) => (
-          <CategoryCard key={product} />
+        {categories.data.map((category) => (
+          <CategoryCard key={category.id} data={category} />
         ))}
       </div>
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const productResponse = await fetch(
+    "https://pc-builder-service-hossain101199.vercel.app/api/v1/products?isFeatured=true"
+  );
+  const products = await productResponse.json();
+
+  const categoryResponse = await fetch(
+    "https://pc-builder-service-hossain101199.vercel.app/api/v1/categories"
+  );
+  const categories = await categoryResponse.json();
+  return { props: { products, categories } };
 };
 
 HomePage.getLayout = function getLayout(page) {

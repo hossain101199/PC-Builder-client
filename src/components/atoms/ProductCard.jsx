@@ -4,7 +4,7 @@ import defaultImage from "../../assets/images/default-image.jpg";
 import StarIcon from "@/assets/svgs/StarIcon";
 import Link from "next/link";
 
-const ProductCard = ({ isPcBuilder = false, isSelected = false }) => {
+const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
   return isPcBuilder ? (
     <div className="rounded-lg p-4 w-full bg-base-100 shadow-xl overflow-hidden flex justify-between items-center">
       <div className="flex gap-2">
@@ -47,7 +47,7 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false }) => {
       <button className="btn btn-outline btn-secondary">X</button>
     </div>
   ) : (
-    <Link href="/products/id">
+    <Link href={`/products/${data?.id}`}>
       <div className="rounded-lg w-full bg-base-100 shadow-xl overflow-hidden">
         <Image
           src={defaultImage}
@@ -55,15 +55,15 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false }) => {
           className="h-[250px] w-full object-cover"
         />
         <div className="card-body">
-          <h2 className="card-title">Name</h2>
-          <p>Category: </p>
+          <h2 className="card-title">{data?.title}</h2>
+          <p>Category: {data?.category.title}</p>
 
           <div className="flex justify-between items-center w-full">
             <div className="flex items-center w-fit">
-              <StarIcon /> <p>4.5</p>
+              <StarIcon /> <p>{data?.rating}</p>
             </div>
             <div className="flex items-center w-fit">
-              <p>$ 85</p> <p>(Status)</p>
+              <p>$ {data?.price}</p> <p>({data?.status})</p>
             </div>
           </div>
         </div>

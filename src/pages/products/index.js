@@ -9,7 +9,7 @@ const ProductsPage = () => {
   return (
     <>
       <h1 className="mb-5 text-5xl font-bold">
-        {router.query.category ? `${router.query.category}` : "Products"}
+        {router.query.title ? `${router.query.title}` : "Products"}
       </h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {[1, 2, 3, 4, 5, 6].map((product) => (
