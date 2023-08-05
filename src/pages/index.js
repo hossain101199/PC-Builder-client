@@ -38,6 +38,7 @@ export const getStaticProps = async () => {
     "https://pc-builder-service-hossain101199.vercel.app/api/v1/categories"
   );
   const categories = await categoryResponse.json();
+  console.log(categories);
   return { props: { products, categories } };
 };
 

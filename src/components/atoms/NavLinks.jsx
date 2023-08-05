@@ -5,7 +5,7 @@ const NavLinks = () => {
   return (
     <>
       <li>
-        <Link href="products">Products</Link>
+        <Link href="/products">Products</Link>
       </li>
       <li tabIndex={0}>
         <details>

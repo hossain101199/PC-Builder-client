@@ -18,10 +18,10 @@ const Hero = () => {
           </h1>
           <p className="mb-5">
             Welcome to our PC Builder website, where you have the power to
-            create your dream PC! Whether you're a hardcore gamer, a content
-            creator, or a tech enthusiast, our PC Builder tool empowers you to
-            handpick the best components and build a high-performance machine
-            tailored to your needs.
+            create your dream PC! Whether you&apos;re a hardcore gamer, a
+            content creator, or a tech enthusiast, our PC Builder tool empowers
+            you to handpick the best components and build a high-performance
+            machine tailored to your needs.
           </p>
           <Link href="pc-builder">
             <button className="btn btn-primary">
