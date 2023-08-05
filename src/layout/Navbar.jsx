@@ -1,9 +1,11 @@
 import NavLinks from "@/components/atoms/NavLinks";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   return (
     <div className="navbar container mx-auto bg-base-100">
       <div className="navbar-start">
@@ -42,9 +44,19 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link href="/sign-in" className="btn btn-outline btn-primary">
-          Sign In
-        </Link>
+        {session?.user ? (
+          <button
+            href="/sign-in"
+            className="btn btn-outline btn-warning"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </button>
+        ) : (
+          <Link href="/sign-in" className="btn btn-outline btn-primary">
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const SignInPage = () => {
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title justify-center">Sign In</h2>
-          <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+          {/* <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
             <input
               name="email"
               type="text"
@@ -34,10 +34,14 @@ const SignInPage = () => {
             <button type="submit" className="btn btn-primary w-full">
               Sign In
             </button>
-          </form>
+          </form> */}
           <button
             className="btn btn-outline btn-primary w-full"
-            onClick={() => signIn("github")}
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "http://localhost:3000",
+              })
+            }
           >
             <GoogleIcon /> Sign in with Google
           </button>

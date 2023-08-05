@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const NavLinks = () => {
+  const { data: session } = useSession();
   return (
     <>
       <li>
@@ -20,11 +21,13 @@ const NavLinks = () => {
           </ul>
         </details>
       </li>
-      <li>
-        <Link href="/pc-builder">
-          <button className="btn"> PC Builder</button>
-        </Link>
-      </li>
+      {session?.user && (
+        <li>
+          <Link href="/pc-builder">
+            <button className="btn"> PC Builder</button>
+          </Link>
+        </li>
+      )}
     </>
   );
 };
