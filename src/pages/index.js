@@ -6,6 +6,7 @@ import Spinner from "@/components/atoms/Spinner";
 
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
+import { useSession } from "next-auth/react";
 import React from "react";
 
 const HomePage = ({ products, categories }) => {
@@ -38,7 +39,7 @@ export const getStaticProps = async () => {
     "https://pc-builder-service-hossain101199.vercel.app/api/v1/categories"
   );
   const categories = await categoryResponse.json();
-  console.log(categories);
+
   return { props: { products, categories } };
 };
 

@@ -14,13 +14,19 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
           className="h-[80px] w-[80px] object-cover"
         />
         <div>
-          <h2 className="font-semibold text-xl">Name: </h2>
-          <p>Key Features: </p>
+          <h2 className="font-semibold text-xl">{data?.title}</h2>
+          {data.keyFeatures.map((feature) => (
+            <p key={feature.id}>
+              <span>{feature.key}</span>: <span>{feature.value}</span>
+            </p>
+          ))}
           <div className="flex items-center w-fit">
-            <StarIcon /> 4.5
+            <StarIcon /> {data?.rating}
           </div>
           <div className="flex items-center w-fit">
-            <p>$ 85 (Status)</p>
+            <p>
+              $ {data?.price} ({data?.status})
+            </p>
           </div>
         </div>
       </div>
@@ -36,10 +42,10 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
           className="h-[80px] w-[80px] object-cover"
         />
         <div>
-          <h2 className="font-semibold text-xl">Name: </h2>
+          <h2 className="font-semibold text-xl">{data?.title}</h2>
           <p>Key Features: </p>
           <div className="flex items-center w-fit">
-            <p>$ 85 </p>
+            <p>$ {data?.price} </p>
           </div>
         </div>
       </div>
@@ -48,7 +54,7 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
     </div>
   ) : (
     <Link href={`/products/${data?.id}`}>
-      <div className="rounded-lg w-full bg-base-100 shadow-xl overflow-hidden">
+      <div className="rounded-lg w-full h-full bg-base-100 shadow-xl overflow-hidden">
         <Image
           src={defaultImage}
           alt="Product image"

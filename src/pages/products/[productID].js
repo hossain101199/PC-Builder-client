@@ -19,8 +19,11 @@ const ProductDetailPage = ({ product, reviews }) => {
           <h2 className="card-title">{product.title}</h2>
           <p>Category: {product.category.title}</p>
           <p>Description: {product.description}</p>
-          <p>Key Features: </p>
-
+          {product.keyFeatures.map((feature) => (
+            <p key={feature.id}>
+              <span>{feature.key}</span>: <span>{feature.value}</span>
+            </p>
+          ))}
           <div className="flex items-center w-fit">
             {[...Array(Math.round(product.rating))].map((_, index) => (
               <StarIcon key={index} />
@@ -53,10 +56,6 @@ export const getStaticPaths = async () => {
   }));
 
   return { paths, fallback: true };
-};
-
-ProductDetailPage.getLayout = function getLayout(page) {
-  return <RootLayout>{page}</RootLayout>;
 };
 
 export const getStaticProps = async (context) => {

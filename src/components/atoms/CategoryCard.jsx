@@ -11,9 +11,11 @@ const CategoryCard = ({ isPcBuilder = false, data }) => {
           alt="Product image"
           className="h-[80px] w-[80px] object-cover"
         />
-        <h2 className="card-title">Name: </h2>
+        <h2 className="card-title">{data.title}</h2>
       </div>
-      <Link href="/pc-builder/products?category=hello">
+      <Link
+        href={`/pc-builder/products?category=${data.id}&title=${data.title}`}
+      >
         <button className="btn btn-outline btn-secondary">Choose</button>
       </Link>
     </div>

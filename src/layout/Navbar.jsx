@@ -1,4 +1,5 @@
 import NavLinks from "@/components/atoms/NavLinks";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 

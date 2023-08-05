@@ -2,6 +2,7 @@ import GoogleIcon from "@/assets/svgs/GoogleIcon";
 import Container from "@/components/atoms/Container";
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -34,7 +35,10 @@ const SignInPage = () => {
               Sign In
             </button>
           </form>
-          <button className="btn btn-outline btn-primary w-full">
+          <button
+            className="btn btn-outline btn-primary w-full"
+            onClick={() => signIn("github")}
+          >
             <GoogleIcon /> Sign in with Google
           </button>
           <p>
