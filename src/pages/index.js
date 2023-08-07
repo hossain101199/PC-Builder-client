@@ -2,14 +2,16 @@ import CategoryCard from "@/components/atoms/CategoryCard";
 import Container from "@/components/atoms/Container";
 import Hero from "@/components/atoms/Hero";
 import ProductCard from "@/components/atoms/ProductCard";
-import Spinner from "@/components/atoms/Spinner";
-
 import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
-import { useSession } from "next-auth/react";
+import { setCategories } from "@/redux/features/categories/categoriesSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const HomePage = ({ products, categories }) => {
+  const dispatch = useDispatch();
+  dispatch(setCategories(categories.data));
+
   return (
     <>
       <h1 className="mb-5 text-5xl font-bold">Featured Products</h1>

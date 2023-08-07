@@ -3,8 +3,14 @@ import React from "react";
 import defaultImage from "../../assets/images/default-image.jpg";
 import StarIcon from "@/assets/svgs/StarIcon";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setProduct } from "@/redux/features/pcBuilder/pcBuilderSlice";
+import { useRouter } from "next/router";
 
 const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   return isPcBuilder ? (
     <div className="rounded-lg p-4 w-full bg-base-100 shadow-xl overflow-hidden flex justify-between items-center">
       <div className="flex gap-2">
@@ -31,7 +37,21 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
         </div>
       </div>
 
-      <button className="btn btn-outline btn-secondary">Add</button>
+      <button
+        className="btn btn-outline btn-secondary"
+        onClick={() => {
+          dispatch(
+            setProduct({
+              category: data.category.title,
+              title: data.title,
+              price: data.price,
+            })
+          );
+          router.push("/pc-builder");
+        }}
+      >
+        Add
+      </button>
     </div>
   ) : isSelected ? (
     <div className="rounded-lg p-4 w-full bg-base-100 shadow-xl overflow-hidden flex justify-between items-center">
@@ -42,8 +62,8 @@ const ProductCard = ({ isPcBuilder = false, isSelected = false, data }) => {
           className="h-[80px] w-[80px] object-cover"
         />
         <div>
-          <h2 className="font-semibold text-xl">{data?.title}</h2>
-          <p>Key Features: </p>
+          <h2 className="font-semibold text-xl">{data?.category}</h2>
+          <p>{data?.title}</p>
           <div className="flex items-center w-fit">
             <p>$ {data?.price} </p>
           </div>

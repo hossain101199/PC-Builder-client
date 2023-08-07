@@ -16,22 +16,22 @@ const ProductDetailPage = ({ product, reviews }) => {
           className="w-full object-cover"
         />
         <div className="p-4 flex flex-col justify-center gap-2">
-          <h2 className="card-title">{product.title}</h2>
-          <p>Category: {product.category.title}</p>
-          <p>Description: {product.description}</p>
-          {product.keyFeatures.map((feature) => (
+          <h2 className="card-title">{product?.title}</h2>
+          <p>Category: {product?.category.title}</p>
+          <p>Description: {product?.description}</p>
+          {product?.keyFeatures.map((feature) => (
             <p key={feature.id}>
               <span>{feature.key}</span>: <span>{feature.value}</span>
             </p>
           ))}
           <div className="flex items-center w-fit">
-            {[...Array(Math.round(product.rating))].map((_, index) => (
+            {[...Array(Math.round(product?.rating))].map((_, index) => (
               <StarIcon key={index} />
             ))}{" "}
-            {product.rating}
+            {product?.rating}
           </div>
           <div className="flex items-center gap-2 w-fit">
-            <p>$ {product.price} </p> <p>({product.status})</p>
+            <p>$ {product?.price} </p> <p>({product?.status})</p>
           </div>
         </div>
       </div>
