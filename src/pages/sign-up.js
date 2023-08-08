@@ -44,7 +44,7 @@ const SignUpPage = () => {
             className="btn btn-outline btn-primary w-full"
             onClick={() =>
               signIn("google", {
-                callbackUrl: "http://localhost:3000",
+                callbackUrl: "https://pc-builder-client-three.vercel.app",
               })
             }
           >
