@@ -16,15 +16,15 @@ const PcBuilderPage = ({ categories }) => {
         <p>Select Your Components</p> <p>total TK {totalPrice}</p>
         <button
           className="btn btn-secondary"
-          disabled={!(products.length >= 6)}
+          disabled={!(products?.length >= 6)}
           onClick={handleOpenModal}
         >
           Complete Build
         </button>
       </div>
 
-      {categories.data.map((category) => {
-        const matchingProduct = products.find(
+      {categories?.data.map((category) => {
+        const matchingProduct = products?.find(
           (product) => product.category === category.title
         );
 
@@ -51,11 +51,11 @@ const PcBuilderPage = ({ categories }) => {
             Congratulations! <br />
             Your PC Build is Complete!
           </h1>
-          {products.map((product) => (
+          {products?.map((product) => (
             <p key={product.title}>
               {" "}
-              <span className="font-semibold">{product.category}: </span>{" "}
-              {product.title}
+              <span className="font-semibold">{product?.category}: </span>{" "}
+              {product?.title}
             </p>
           ))}
 

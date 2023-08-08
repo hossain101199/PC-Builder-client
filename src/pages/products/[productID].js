@@ -1,6 +1,5 @@
 import RootLayout from "@/layout/RootLayout";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React from "react";
 import defaultImage from "../../assets/images/default-image.jpg";
 import StarIcon from "@/assets/svgs/StarIcon";
@@ -19,7 +18,7 @@ const ProductDetailPage = ({ product, reviews }) => {
           <h2 className="card-title">{product?.title}</h2>
           <p>Category: {product?.category.title}</p>
           <p>Description: {product?.description}</p>
-          {product?.keyFeatures.map((feature) => (
+          {product?.keyFeatures?.map((feature) => (
             <p key={feature.id}>
               <span>{feature.key}</span>: <span>{feature.value}</span>
             </p>
@@ -51,25 +50,25 @@ export const getStaticPaths = async () => {
 
   const products = await productResponse.json();
 
-  const paths = products.data.map((product) => ({
+  const paths = await products?.data?.map((product) => ({
     params: { productID: product.id },
   }));
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
   const { params } = context;
 
   const productResponse = await fetch(
-    `https://pc-builder-service-hossain101199.vercel.app/api/v1/products/${params.productID}`
+    `https://pc-builder-service-hossain101199.vercel.app/api/v1/products/${params?.productID}`
   );
-  const product = (await productResponse.json()).data;
+  const product = (await productResponse.json())?.data;
 
   const reviewsResponse = await fetch(
-    `https://pc-builder-service-hossain101199.vercel.app/api/v1/reviews/${params.productID}`
+    `https://pc-builder-service-hossain101199.vercel.app/api/v1/reviews/${params?.productID}`
   );
-  const reviews = (await reviewsResponse.json()).data;
+  const reviews = (await reviewsResponse.json())?.data;
 
   return { props: { product, reviews } };
 };
