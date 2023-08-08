@@ -77,7 +77,7 @@ export const getStaticProps = async () => {
   );
   const categories = await categoryResponse.json();
 
-  return { props: { categories } };
+  return { props: { categories }, revalidate: 10 };
 };
 
 PcBuilderPage.getLayout = function getLayout(page) {

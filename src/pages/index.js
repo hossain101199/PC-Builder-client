@@ -42,7 +42,7 @@ export const getStaticProps = async () => {
   );
   const categories = await categoryResponse.json();
 
-  return { props: { products, categories } };
+  return { props: { products, categories }, revalidate: 10 };
 };
 
 HomePage.getLayout = function getLayout(page) {

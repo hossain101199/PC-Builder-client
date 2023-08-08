@@ -54,7 +54,7 @@ export const getStaticPaths = async () => {
     params: { productID: product.id },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps = async (context) => {
@@ -70,7 +70,7 @@ export const getStaticProps = async (context) => {
   );
   const reviews = (await reviewsResponse.json())?.data;
 
-  return { props: { product, reviews } };
+  return { props: { product, reviews }, revalidate: 10 };
 };
 
 ProductDetailPage.getLayout = function getLayout(page) {
